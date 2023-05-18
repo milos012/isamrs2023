@@ -1,4 +1,4 @@
-package com.isamrs.backend;
+package ftn.isamrs.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
