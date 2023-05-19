@@ -1,5 +1,7 @@
 package ftn.isamrs.backend.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -15,8 +17,8 @@ public class Driver extends User{
     @Column(name = "active",nullable = false)
     private Boolean active;
 
-    // @Column(name = "drives",nullable = false)
-    // private List<Drive> drives;
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Drive> drives;
 
     // //OnetoOne
     // @Column(name = "drives",nullable = false)
