@@ -1,4 +1,4 @@
-package ftn.isamrs.backend.models;
+package ftn.isamrs.backend.model;
 
 import java.time.LocalTime;
 

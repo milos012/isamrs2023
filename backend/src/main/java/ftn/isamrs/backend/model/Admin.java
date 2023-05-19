@@ -1,4 +1,4 @@
-package ftn.isamrs.backend.models;
+package ftn.isamrs.backend.model;
 
 import javax.persistence.*;
 
@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Entity
-@Table(name = "admin")
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Entity
+@Table(name = "admin")
 public class Admin {
     
     @Id

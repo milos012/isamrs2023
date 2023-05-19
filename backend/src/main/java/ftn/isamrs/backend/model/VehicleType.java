@@ -1,4 +1,4 @@
-package ftn.isamrs.backend.models;
+package ftn.isamrs.backend.model;
 
 import javax.persistence.*;
 
@@ -8,21 +8,20 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "location")
+@Table(name = "vehicleType")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Location {
+public class VehicleType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "geoLongitude",nullable = false)
-    private String geoLongitude;
+    @Column(name = "name",nullable = false)
+    private String name;
 
-    @Column(name = "geoLatitude",nullable = false)
-    private String geoLatitude;
-
+    @Column(name = "priceKm",nullable = false)
+    private Long priceKm;
     
 }

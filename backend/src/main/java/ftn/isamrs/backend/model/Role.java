@@ -1,3 +1,4 @@
+package ftn.isamrs.backend.model;
 // package ftn.isamrs.backend.models;
 
 // import com.fasterxml.jackson.annotation.JsonIgnore;
