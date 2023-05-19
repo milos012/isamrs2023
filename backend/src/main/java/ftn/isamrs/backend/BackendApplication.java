@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-// @EntityScan("ftn.isamrs.backend.model")
+// @EntityScan("ftn.isamrs.backend.*")
 public class BackendApplication {
 
 	public static void main(String[] args) {

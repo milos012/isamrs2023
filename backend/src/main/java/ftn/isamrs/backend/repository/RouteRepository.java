@@ -3,9 +3,9 @@
 // import org.springframework.data.jpa.repository.JpaRepository;
 // import org.springframework.stereotype.Repository;
 
-// import ftn.isamrs.backend.model.VehicleType;
+// import ftn.isamrs.backend.model.Route;
 
 // @Repository
-// public interface VehicleTypeRepository extends JpaRepository<VehicleType, Long>{
+// public interface RouteRepository extends JpaRepository<Route, Long>{
     
 // }
