@@ -7,5 +7,6 @@ import ftn.isamrs.backend.model.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long>{
+    Admin findAdminByUsername(String username);
     
 }
