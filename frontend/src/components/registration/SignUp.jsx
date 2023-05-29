@@ -42,34 +42,27 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+
+    // Checking password
+    //TODO: Display error if it doenst match, axios call if it matches
+    let password = data.get('password');
+    let passwordConf = data.get('passwordConf')
+
+    if (password.length != 0){
+      if (password == passwordConf){
+        console.log("password matches")
+      }
+      else{
+        console.log("password doesn't match")
+      }
+    }
+
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
-
-  // const userRef= useRef();
-  // const errRef = useRef();
-
-  // const [pwd, setPwd] = useState('');
-  // const [validPwd, setValidPwd] = useState(false);
-  // const [pwdFocus, setPwdFocus] = useState(false);
-
-  // const [matchPwd, setMatchPwd] = useState('');
-  // const [validMatch, setValidMatch] = useState(false);
-  // const [matchFocus, setMatchFocus] = useState(false);
-
-  // const [errMsg, setErrMsg] = useState('');
-  // const [success, setSuccess] = useState(false);
-
-  // useEffect(() => {
-  //       setValidPwd(PWD_REGEX.test(pwd));
-  //       setValidMatch(pwd === matchPwd);
-  // }, [pwd, matchPwd])
-
-  // useEffect(() => {
-  //     setErrMsg('');
-  // }, [user, pwd, matchPwd])
 
   return (
     <ThemeProvider theme={theme}>
