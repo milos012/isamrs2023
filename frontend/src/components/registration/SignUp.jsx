@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -23,45 +26,50 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const theme = createTheme();
 
-function checkPassword(){
-  let password = document.getElementById("password").value;
-  let passwordConf = focument.getElementById("passwordConf").value;
-
-  if (password.length != 0){
-    if (password == passwordConf){
-      console.log("password matches")
-    }
-    else{
-      console.log("password doesn't match")
-    }
-  }
-
-}
 
 export default function SignUp() {
+
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
 
+    let fName = data.get('firstName');
+    let lName = data.get('lastName');
+    let city = data.get('city');
+    let phoneNumber = data.get('phoneNumber');
+    let email = data.get('email');
     // Checking password
     //TODO: Display error if it doenst match, axios call if it matches
     let password = data.get('password');
-    let passwordConf = data.get('passwordConf')
+    let passwordConf = data.get('passwordConf');
+
 
     if (password.length != 0){
       if (password == passwordConf){
         console.log("password matches")
+        try {
+          // data will be an error? send all the let-s created above instead
+          axios.post("http://localhost:9000/api/register",data,
+            {
+                headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
+                withCredentials: true
+            });
+        } catch (error) {
+          console.log(error)
+        }
+    
+        navigate('/')
+  
       }
       else{
         console.log("password doesn't match")
+        alert("Password doesn't match!")
       }
     }
 
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (
@@ -171,7 +179,7 @@ export default function SignUp() {
                   Already have an account? Sign in
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> 
           </Box>
         </Box>
       </Container>
