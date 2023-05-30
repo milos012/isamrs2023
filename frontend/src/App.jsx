@@ -5,6 +5,8 @@ import './App.css'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import SignUp from './components/registration/SignUp';
 import SignIn from './components/registration/SignIn';
+import RegisterDriver from './components/admin/AddDriver';
+import { NavbarApp } from './components/NavBar';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,12 +15,14 @@ function App() {
 
     <Router>
       <div className='App'>
-        {/* ovde navbar */}
+        <NavbarApp/>
         <div className='content'>
           <Routes>
             <Route path="/" element={<SignUp/>}></Route>
             <Route path="/signUp" element={<SignUp/>}></Route>
             <Route path="/signIn" element={<SignIn/>}></Route>
+            
+            <Route path="/registerDriver" element={<RegisterDriver/>}/>
           </Routes>
         </div>
       </div>
