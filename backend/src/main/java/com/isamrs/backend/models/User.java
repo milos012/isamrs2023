@@ -48,6 +48,9 @@ public class User {
     @Column(name = "blocked",nullable = false)
     private Boolean blocked;
 
+    @Column(name = "activated",nullable = false)
+    private Boolean activated;
+
     //TODO da li treba security uopste?
 
     // @ManyToMany(fetch = FetchType.EAGER)

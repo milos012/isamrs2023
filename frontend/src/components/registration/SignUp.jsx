@@ -45,6 +45,7 @@ export default function SignUp() {
     //TODO: Display error if it doenst match, axios call if it matches
     let password = data.get('password');
     let passwordConf = data.get('passwordConf');
+    let blocked = false;
 
 
     if (password.length != 0){
