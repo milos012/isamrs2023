@@ -46,6 +46,7 @@ export default function SignUp() {
     let password = data.get('password');
     let passwordConf = data.get('passwordConf');
     let blocked = false;
+    let imgUrl = data.get('imgUrl');
 
 
     if (password.length != 0){
@@ -162,6 +163,16 @@ export default function SignUp() {
                   label="Confirm Password"
                   type="password"
                   id="passwordConf"
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <label>Profile Picture</label>
+                <TextField
+                  required
+                  fullWidth
+                  id="imgUrl"
+                  name="imgUrl"
+                  type="file"
                 />
               </Grid>
               
