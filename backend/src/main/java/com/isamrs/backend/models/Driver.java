@@ -16,7 +16,8 @@ public class Driver extends User{
     @Column(name = "active",nullable = false)
     private Boolean active;
 
-    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_driver_id",referencedColumnName = "id")
     private List<Drive> drives;
 
     // //OnetoOne

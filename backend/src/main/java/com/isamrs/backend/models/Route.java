@@ -26,11 +26,12 @@ public class Route {
     @Column(name = "kraj",nullable = false)
     private LocalTime kraj;
 
-    @Column(name = "polaziste",nullable = false, unique = true)
-    private Location polaziste;
+    //TODO manytoone
+    // @Column(name = "polaziste",nullable = false, unique = true)
+    // private Location polaziste;
 
-    @Column(name = "odrediste",nullable = false, unique = true)
-    private Location odrediste;
+    // @Column(name = "odrediste",nullable = false, unique = true)
+    // private Location odrediste;
     
     @Column(name = "kilometraza",nullable = false)
     private Double kilometraza;
@@ -43,8 +44,9 @@ public class Route {
     @Column(name = "cena",nullable = false)
     private Double cena;
 
-    @ManyToOne
-    @JoinColumn(name = "drive_id")
-    private Drive drive;
+    // Ne treba manytoone, samo onetomay u pravoj klasi
+    // @ManyToOne
+    // @JoinColumn(name = "drive_id")
+    // private Drive drive;
 }
 

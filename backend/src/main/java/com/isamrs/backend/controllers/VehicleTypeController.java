@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.isamrs.backend.DTO.LocationDTO;
 import com.isamrs.backend.DTO.VehicleTypeDTO;
-import com.isamrs.backend.models.Location;
 import com.isamrs.backend.models.VehicleType;
-
 import com.isamrs.backend.services.VehicleTypeService;
 
 

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.isamrs.backend.models.Admin;
 import com.isamrs.backend.models.VehicleType;
 import com.isamrs.backend.repositories.VehicleTypeRepository;
 
