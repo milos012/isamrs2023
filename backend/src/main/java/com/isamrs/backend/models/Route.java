@@ -26,7 +26,7 @@ public class Route {
     @Column(name = "kraj",nullable = false)
     private LocalTime kraj;
 
-    //TODO manytoone
+    //Ne treba manytoone, samo onetomany u Location?
     // @Column(name = "polaziste",nullable = false, unique = true)
     // private Location polaziste;
 

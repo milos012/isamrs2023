@@ -60,6 +60,8 @@ public class LocationController {
         location.setId(locDTO.getId());
         location.setGeoLatitude(locDTO.getGeoLatitude());
         location.setGeoLongitude(locDTO.getGeoLongitude());
+        location.setPolazistaRuta(locDTO.getPolazistaRuta());
+        location.setOdredistaRuta(locDTO.getOdredistaRuta());
 
         locationService.saveLocation(location);
 

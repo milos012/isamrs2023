@@ -1,5 +1,7 @@
 package com.isamrs.backend.models;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +25,14 @@ public class Location {
 
     @Column(name = "geoLatitude",nullable = false)
     private String geoLatitude;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_polaziste_id",referencedColumnName = "id")
+    private List<Route> polazistaRuta;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_odrediste_id",referencedColumnName = "id")
+    private List<Route> odredistaRuta;
 
     
 }

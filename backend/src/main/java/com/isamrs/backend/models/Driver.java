@@ -24,6 +24,7 @@ public class Driver extends User{
     // @Column(name = "drives",nullable = false)
     // private Vehicle vehicle;
 
+
     
 }
 
