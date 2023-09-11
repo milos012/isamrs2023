@@ -62,6 +62,7 @@ public class LocationController {
         location.setGeoLongitude(locDTO.getGeoLongitude());
         location.setPolazistaRuta(locDTO.getPolazistaRuta());
         location.setOdredistaRuta(locDTO.getOdredistaRuta());
+        location.setVehicles(locDTO.getVehicles());
 
         locationService.saveLocation(location);
 

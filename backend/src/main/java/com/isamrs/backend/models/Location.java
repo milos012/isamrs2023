@@ -34,6 +34,10 @@ public class Location {
     @JoinColumn(name="fk_odrediste_id",referencedColumnName = "id")
     private List<Route> odredistaRuta;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_lokacija_id",referencedColumnName = "id")
+    private List<Vehicle> vehicles;
+
     
 }
 

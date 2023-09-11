@@ -7,6 +7,8 @@ import SignUp from './components/registration/SignUp';
 import SignIn from './components/registration/SignIn';
 import RegisterDriver from './components/admin/AddDriver';
 import { NavbarApp } from './components/NavBar';
+import HomePage from './components/homepage/HomePage';
+import Home from './components/homepage/Home';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +23,7 @@ function App() {
             <Route path="/" element={<SignUp/>}></Route>
             <Route path="/signUp" element={<SignUp/>}></Route>
             <Route path="/signIn" element={<SignIn/>}></Route>
+            <Route path="/HomePage" element={<Home/>}></Route>
             
             <Route path="/registerDriver" element={<RegisterDriver/>}/>
           </Routes>
