@@ -67,8 +67,10 @@ public class DriverController {
         driver.setImgUrl(driverDTO.getImgUrl());
         driver.setAddress(driverDTO.getAddress());
         driver.setBlocked(driverDTO.getBlocked());
-        driver.setActivated(driverDTO.getActive());
-        //TODO: treba lista <Drive> drives?
+        driver.setActivated(true);
+        driver.setActive(false);
+        
+        //driver.setDrives(driverDTO.getDrives());
         
 
         driverService.saveDriver(driver);

@@ -91,7 +91,7 @@ class RegisterDriver extends React.Component {
 
         console.log(this.state)
 
-        axios.post('http://localhost:9090/api/addDriver',this.state,
+        axios.post('http://localhost:9090/api/driver/post',this.state,
         {
             headers: {'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'},
             withCredentials: true

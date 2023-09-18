@@ -12,8 +12,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PassengerDTO extends UserDTO{
+public class PassengerDTO{
 
+    private Long id;
+    private String fname;
+    private String lname;
+    private String email;
+    private String password;
+    private String phoneNumber;
+    private String imgUrl;
+    private String address;
+    private Boolean blocked;
     private List<Drive> drives;
 
     public PassengerDTO(Passenger p){
@@ -27,8 +36,7 @@ public class PassengerDTO extends UserDTO{
         this.setAddress(p.getAddress());
         this.setBlocked(p.getBlocked());
 
-        //todo
-        // this.setDrives
+        this.setDrives(p.getDrives());
 
     }
     

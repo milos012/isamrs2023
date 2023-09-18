@@ -9,6 +9,7 @@ import RegisterDriver from './components/admin/AddDriver';
 import { NavbarApp } from './components/NavBar';
 import HomePage from './components/homepage/HomePage';
 import Home from './components/homepage/Home';
+import EditUser from './components/user/EditUser';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,11 +21,12 @@ function App() {
         <NavbarApp/>
         <div className='content'>
           <Routes>
-            <Route path="/" element={<SignUp/>}></Route>
+            <Route path="/" element={<Home/>}></Route>
             <Route path="/signUp" element={<SignUp/>}></Route>
             <Route path="/signIn" element={<SignIn/>}></Route>
             <Route path="/HomePage" element={<Home/>}></Route>
-            
+            <Route path="/editInfo" element={<EditUser/>}></Route>
+
             <Route path="/registerDriver" element={<RegisterDriver/>}/>
           </Routes>
         </div>

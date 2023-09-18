@@ -9,32 +9,42 @@ import Button from '@mui/material/Button';
 import L from "leaflet";
 import {MapContainer, Marker, TileLayer, useMap} from "react-leaflet"
 import {Icon} from "leaflet"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Paper } from "@mui/material";
 import LeafletRoutingMachine from "./LeafletRoutingMachine";
 import LeafletGeocoder from "./LeafletGeocoder";
+import axios from 'axios';
 
 export default function Home(){
 
 
-    // const [pocetak, setPocetak] = React.useState('');
-    // const [kraj, setKraj] = React.useState('');
 
-    //TODO: load vozila iz baze i prikaz njih (i korisnika)
-    // marker za trenutnu lokaciju + lista markera lokacija vozila(druga ikonica, sa popupom vehicleId-a)
-    const vehicles = [
+    const [vehicles, setVehicles] = useState([]);
+    useEffect(() => {
+        const fetchVehicles = async () => {
+          try {
+            const response = await axios.get('http://localhost:9090/api/location/all');
+            const responseData = response.data;
+
+            setVehicles(responseData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // Call the fetchVehicles function when the component mounts
+        fetchVehicles();
+      }, []);
+    const cars = [
         {
             geocode :[45.245617, 19.838533],
             popUp: "1"
         }
         // {
-        //     geocode :[45.256872, 19.834077],
+        //     geocode :[45.254375, 19.827427],
         //     popUp: "2"
         // },
         // {
-        //     geocode :[45.258841, 19.850172],
-        //     popUp: "3"
-        // }
     ];
 
     const carIcon = new Icon({
@@ -42,24 +52,6 @@ export default function Home(){
         iconSize: [36,36]
     })
 
-    // const changeHandler = (e) => {
-    //     this.setState({[e.currentTarget.name]: e.currentTarget.value})
-    // }
-
-    // submitHandler = (e) => {
-    //     e.preventDefault()
-
-    //     console.log(this.state)
-    // }
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const data = new FormData(event.currentTarget);
-    //     console.log({
-    //       pocetak: data.get('pocetak'),
-    //       kraj: data.get('kraj'),
-    //     });
-    // }
 
     //const [myLocation,setMyLocation] = useState({lng:45.251605, lat: 19.851990});
     return(
@@ -100,19 +92,17 @@ export default function Home(){
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {vehicles.map(vehicle => (
-                    <Marker position={vehicle.geocode} icon={carIcon}>
+                {vehicles.map((vehicle) => (
+                    <Marker position={[vehicle.geoLongitude, vehicle.geoLatitude]} icon={carIcon}>
                     </Marker>
                 ))}
 
-                {/* <Marker position={[myLocation.lng, myLocation.lat]} draggable={true} onDragma>
-                </Marker> */}
-                {/* {myLocation.map(myloc => (
-                    <Marker position={myloc.geocode} draggable={true}>
+                {cars.map(car => (
+                    <Marker position={car.geocode} icon={carIcon}>
                     </Marker>
-                ))} */}
+                ))}
+
                 <LeafletRoutingMachine/>
-                {/* <LeafletGeocoder/> */}
             </MapContainer>
 
         </Grid>

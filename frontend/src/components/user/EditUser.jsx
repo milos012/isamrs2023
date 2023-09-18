@@ -16,10 +16,16 @@ import axios from 'axios';
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function EditUser() {
 
+    //TODO dodaj stvari koje se menjaju - fname, lname, email, password, phoneNumber, imgUrl, address
+    const [fname, setFname] = React.useState('');
+    const [lname, setLname] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [phoneNumber, setPhoneNumber] = React.useState('');
+    const [imgUrl, setImgUrl] = React.useState('');
+    const [address, setAddress] = React.useState('');
     const navigate = useNavigate();
 
 
@@ -27,11 +33,16 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password')
+        fname: data.get('fname'),
+        lname: data.get('lname'),
+        password: data.get('password'),
+        phoneNumber: data.get('phoneNumber'),
+        imgUrl: data.get('imgUrl'),
+        address: data.get('address')
     });
 
     try {
+        //TODO izmeni putanju - i ceo try
         const response = axios.post("http://localhost:9000/api/login",
           JSON.stringify({ email, password }),
           {
@@ -79,21 +90,25 @@ export default function SignIn() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="fname"
+                label="First name"
+                name="fname"
+                autoComplete="fname"
+                autoFocus
+              />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="lname"
+                label="Last name"
+                name="lname"
+                autoComplete="lname"
                 autoFocus
               />
               <TextField
@@ -106,26 +121,30 @@ export default function SignIn() {
                 id="password"
                 autoComplete="current-password"
               />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="phoneNumber"
+                label="Phone Number"
+                id="phoneNumber"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="address"
+                label="Address"
+                id="address"
+              />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Edit
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/signUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
         </Grid>

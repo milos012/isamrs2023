@@ -11,8 +11,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DriverDTO extends UserDTO{
+public class DriverDTO{
 
+    private Long id;
+    private String fname;
+    private String lname;
+    private String email;
+    private String password;
+    private String phoneNumber;
+    private String imgUrl;
+    private String address;
+    private Boolean blocked;
+    private Boolean activated;
     private Boolean active;
     private List<Drive> drives;
 
@@ -26,10 +36,10 @@ public class DriverDTO extends UserDTO{
         this.setImgUrl(driv.getImgUrl());
         this.setAddress(driv.getAddress());
         this.setBlocked(driv.getBlocked());
-        this.active = driv.getActivated();
+        this.setActivated(true);
+        this.setActive(driv.getActive());
 
-        //Mozda se ne vidi jer se kaci na id, a drive je podklasa usera(koristi id superklase)
-        // this.drives = driv.getDrives();
+        this.setDrives(driv.getDrives());
     }
     
 }
