@@ -54,7 +54,7 @@ export default function SignUp() {
         console.log("password matches")
         try {
           // data will be an error? send all the let-s created above instead
-          axios.post("http://localhost:9000/api/register",data,
+          axios.post("http://localhost:9090/api/passenger/register",data,
             {
                 headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
                 withCredentials: true

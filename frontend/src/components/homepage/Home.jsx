@@ -39,11 +39,11 @@ export default function Home(){
         {
             geocode :[45.245617, 19.838533],
             popUp: "1"
+        },
+        {
+            geocode :[45.254375, 19.827427],
+            popUp: "2"
         }
-        // {
-        //     geocode :[45.254375, 19.827427],
-        //     popUp: "2"
-        // },
         // {
     ];
 

@@ -13,5 +13,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/location/all")
                 .allowedOrigins("http://127.0.0.1:5173");
+        registry.addMapping("/api/passenger/register")
+                .allowedOrigins("http://127.0.0.1:5173");
     }
 }
