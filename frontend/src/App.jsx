@@ -12,6 +12,7 @@ import Home from './components/homepage/Home';
 import EditUser from './components/user/EditUser';
 import ActivateUser from './components/registration/ActivateUser';
 import ForgotPassword from './components/registration/ForgotPassword';
+import UserPage from './components/user/UserPage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +33,8 @@ function App() {
             <Route path="/registerDriver" element={<RegisterDriver/>}/>
             <Route path="/activate" element={<ActivateUser/>}/>
             <Route path="/resetPassword" element={<ForgotPassword/>}/>
+            <Route path='/user' element={<UserPage userId={1}/>}/> 
+            {/* promeniti userPage da putanja bude id usera */}
           </Routes>
         </div>
       </div>
