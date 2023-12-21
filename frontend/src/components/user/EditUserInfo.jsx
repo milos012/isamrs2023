@@ -9,7 +9,7 @@ export default function EditUserInfo() {
     const handleEdit = (user) => {
 
         axios
-            .put("http://localhost:9000/api/User/${user.id}")
+            .put("http://localhost:9090/passenger/edit/${user.id}")
             .then(response => {
                 console.log(response)
             })

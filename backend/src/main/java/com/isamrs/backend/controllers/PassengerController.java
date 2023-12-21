@@ -141,4 +141,24 @@ public class PassengerController {
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT, consumes="application/json")
+	public ResponseEntity<PassengerDTO> updatePassenger(@RequestBody PassengerDTO pDTO) throws Exception {
+
+        Optional<Passenger> old = passengerService.getPassengerById(pDTO.getId());
+
+        if (old.get() != null) {
+            old.get().setFname(pDTO.getFname());
+            old.get().setLname(pDTO.getLname());
+            old.get().setPassword(pDTO.getPassword());
+            old.get().setPhoneNumber(pDTO.getPhoneNumber());
+            //pass.setImgUrl(pDTO.getImgUrl());
+            old.get().setAddress(pDTO.getAddress());
+            passengerService.savePassenger(old.get());
+            return new ResponseEntity<>(new PassengerDTO(old.get()), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
 }
