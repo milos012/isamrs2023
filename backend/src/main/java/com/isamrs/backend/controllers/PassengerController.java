@@ -93,11 +93,52 @@ public class PassengerController {
 
         //Sending mail
         String subject = "ISAMRS Account activation";
-        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activation";
+        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activate";
 
         mailService.sendSimpleEmail(pass.getEmail(), subject, body);
 
 
 		return new ResponseEntity<>(new PassengerDTO(pass), HttpStatus.CREATED);
+	}
+
+
+    @RequestMapping(value="/activate/{email}", method=RequestMethod.PUT)
+	public ResponseEntity<PassengerDTO> activate(@PathVariable String email){
+		
+		Passenger rt = passengerService.getPassengerByEmail(email);
+
+		
+		if (rt != null) {
+
+            if(rt.getPassword() != ""){
+                rt.setActivated(true);
+                System.out.println("nalog aktiviran");
+                passengerService.savePassenger(rt);
+                return new ResponseEntity<>(new PassengerDTO(rt), HttpStatus.OK);
+            }
+	
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+    @RequestMapping(value="/resetPassword/{email}", method=RequestMethod.GET)
+	public ResponseEntity<PassengerDTO> resetPassword(@PathVariable String email){
+		
+		Passenger rt = passengerService.getPassengerByEmail(email);
+		
+		if (rt != null) {
+
+            //Sending mail
+            String subject = "ISAMRS Password restoration";
+            String body = "You have requested password restoration.\n Your password is:" + rt.getPassword() +"\n";
+
+            mailService.sendSimpleEmail(email, subject, body);
+
+            System.out.println("mail sa sifrom poslat.");
+			return new ResponseEntity<>(new PassengerDTO(rt), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

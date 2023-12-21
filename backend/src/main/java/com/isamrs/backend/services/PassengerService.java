@@ -38,8 +38,11 @@ public class PassengerService {
     }
 
     public Passenger updatePassenger(Passenger p){
-        //TODO
         return p;
+    }
+
+    public Passenger getPassengerByEmail(String email){
+        return passengerRepository.getPassengerByEmail(email);
     }
     
 }

@@ -7,5 +7,6 @@ import com.isamrs.backend.models.Passenger;
 
 @Repository
 public interface PassengerRepository extends JpaRepository<Passenger, Long>{
+    Passenger getPassengerByEmail(String email);
     
 }

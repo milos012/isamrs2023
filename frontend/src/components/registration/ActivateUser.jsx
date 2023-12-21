@@ -16,7 +16,7 @@ import axios from 'axios';
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function ActivateUser() {
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -32,19 +32,19 @@ export default function SignIn() {
     });
 
     try {
-        const response = axios.post("http://localhost:9000/api/login",
-          JSON.stringify({ email, password }),
+        const response = axios.put('http://localhost:9090/api/passenger/activate/milos.stik@gmail.com',
+          {email},
           {
               headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
               withCredentials: true
           });
-        const accessToken = (await response)?.data?.accessToken;
-        const roles = (await response)?.data?.roles;
-        setAuth({ email, password, roles, accessToken });
-        setEmail('');
-        setPassword('');
+        // const accessToken = (await response)?.data?.accessToken;
+        // const roles = (await response)?.data?.roles;
+        // setAuth({ email, password, roles, accessToken });
+        // setEmail('');
+        // setPassword('');
       } catch (error) {
-        console.log("Greska prilikom logina")
+        console.log("Greska prilikom aktivacije")
       }
   
       navigate('/')
@@ -83,7 +83,7 @@ export default function SignIn() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Activate account
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -113,19 +113,7 @@ export default function SignIn() {
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/resetPassword" variant="body2">
-                    {"Forgot password?"}
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/signUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
+              </Button> 
             </Box>
           </Box>
         </Grid>

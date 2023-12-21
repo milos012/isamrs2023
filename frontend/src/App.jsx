@@ -10,6 +10,8 @@ import { NavbarApp } from './components/NavBar';
 import HomePage from './components/homepage/HomePage';
 import Home from './components/homepage/Home';
 import EditUser from './components/user/EditUser';
+import ActivateUser from './components/registration/ActivateUser';
+import ForgotPassword from './components/registration/ForgotPassword';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +30,8 @@ function App() {
             <Route path="/editInfo" element={<EditUser/>}></Route>
 
             <Route path="/registerDriver" element={<RegisterDriver/>}/>
+            <Route path="/activate" element={<ActivateUser/>}/>
+            <Route path="/resetPassword" element={<ForgotPassword/>}/>
           </Routes>
         </div>
       </div>
