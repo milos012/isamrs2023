@@ -82,7 +82,7 @@ public class PassengerController {
         pass.setEmail(pDTO.getEmail());
         pass.setPassword(pDTO.getPassword());
         pass.setPhoneNumber(pDTO.getPhoneNumber());
-        //pass.setImgUrl(pDTO.getImgUrl());
+        pass.setImgUrl(pDTO.getImgUrl());
         pass.setAddress(pDTO.getAddress());
         pass.setBlocked(pDTO.getBlocked());
         pass.setActivated(false);
@@ -93,11 +93,32 @@ public class PassengerController {
 
         //Sending mail
         String subject = "ISAMRS Account activation";
-        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activation";
+        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activate";
 
         mailService.sendSimpleEmail(pass.getEmail(), subject, body);
 
 
 		return new ResponseEntity<>(new PassengerDTO(pass), HttpStatus.CREATED);
+	}
+
+
+    @RequestMapping(value="/activate/{email}", method=RequestMethod.PUT)
+	public ResponseEntity<PassengerDTO> activate(@PathVariable String email){
+		
+		Passenger rt = passengerService.getPassengerByEmail(email);
+
+		
+		if (rt != null) {
+
+            if(rt.getPassword() != ""){
+                rt.setActivated(true);
+                System.out.println("nalog aktiviran");
+                passengerService.savePassenger(rt);
+                return new ResponseEntity<>(new PassengerDTO(rt), HttpStatus.OK);
+            }
+	
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }
