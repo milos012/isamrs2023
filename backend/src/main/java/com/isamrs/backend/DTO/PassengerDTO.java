@@ -32,7 +32,7 @@ public class PassengerDTO{
         this.setEmail(p.getEmail());
         this.setPassword(p.getPassword());
         this.setPhoneNumber(p.getPhoneNumber());
-        this.setImgUrl(p.getImgUrl());
+        this.setImgUrl("asdfdto");
         this.setAddress(p.getAddress());
         this.setBlocked(p.getBlocked());
 

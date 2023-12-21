@@ -82,7 +82,7 @@ public class PassengerController {
         pass.setEmail(pDTO.getEmail());
         pass.setPassword(pDTO.getPassword());
         pass.setPhoneNumber(pDTO.getPhoneNumber());
-        pass.setImgUrl(pDTO.getImgUrl());
+        //pass.setImgUrl(pDTO.getImgUrl());
         pass.setAddress(pDTO.getAddress());
         pass.setBlocked(pDTO.getBlocked());
         pass.setActivated(false);
