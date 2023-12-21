@@ -17,5 +17,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://127.0.0.1:5173");
         registry.addMapping("/api/passenger/activate/{email}")
                 .allowedOrigins("http://127.0.0.1:5173");
+        registry.addMapping("/api/passenger/resetPassword/{email}")
+                .allowedOrigins("http://127.0.0.1:5173");
     }
 }

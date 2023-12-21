@@ -121,4 +121,24 @@ public class PassengerController {
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+    @RequestMapping(value="/resetPassword/{email}", method=RequestMethod.GET)
+	public ResponseEntity<PassengerDTO> resetPassword(@PathVariable String email){
+		
+		Passenger rt = passengerService.getPassengerByEmail(email);
+		
+		if (rt != null) {
+
+            //Sending mail
+            String subject = "ISAMRS Password restoration";
+            String body = "You have requested password restoration.\n Your password is:" + rt.getPassword() +"\n";
+
+            mailService.sendSimpleEmail(email, subject, body);
+
+            System.out.println("mail sa sifrom poslat.");
+			return new ResponseEntity<>(new PassengerDTO(rt), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }
