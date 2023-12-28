@@ -65,10 +65,13 @@ public class DriveController {
 
         //passengers i mozda drivers
 
-        drive.setRoutes(driveDTO.getRoutes());
+        // drive.setRoutes(driveDTO.getRoutes());
         drive.setStatus(driveDTO.getStatus());
         drive.setBabyFriendly(driveDTO.getBabyFriendly());
         drive.setPetFriendly(driveDTO.getPetFriendly());
+        drive.setPolaziste(driveDTO.getPolaziste());
+        drive.setOdrediste(driveDTO.getOdrediste());
+        drive.setDatum(driveDTO.getDatum());
 
         driveService.saveDrive(drive);
 

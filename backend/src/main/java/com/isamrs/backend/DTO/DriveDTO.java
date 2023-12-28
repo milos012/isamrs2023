@@ -24,10 +24,13 @@ public class DriveDTO {
     //Mozda drivers? drive je manytoone so idk
     //TODO: passengers
 
-    private List<Route> routes;
+    // private List<Route> routes;
     private DriveStatus status;
     private Boolean babyFriendly;
     private Boolean petFriendly;
+    private String polaziste;
+    private String odrediste;
+    private String datum;
 
     public DriveDTO(Drive driv){
         this.id = driv.getId();
@@ -35,10 +38,13 @@ public class DriveDTO {
         this.kraj = driv.getKraj();
         this.ukupnaCena= driv.getUkupnaCena();
         
-        this.routes = driv.getRoutes();
+        // this.routes = driv.getRoutes();
         this.status = driv.getStatus();
         this.babyFriendly = driv.getBabyFriendly();
         this.petFriendly = driv.getPetFriendly();
+        this.polaziste = driv.getPolaziste();
+        this.odrediste = driv.getOdrediste();
+        this.datum = driv.getDatum();
     }
     
 }

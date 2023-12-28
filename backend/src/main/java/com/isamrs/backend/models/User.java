@@ -2,14 +2,17 @@ package com.isamrs.backend.models;
 
 import lombok.*;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -62,5 +65,9 @@ public class User {
     // @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     // private Authority authority;
     
+
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name="fk_user_id",referencedColumnName = "id")
+    // private List<Drive> drives;
 }
 

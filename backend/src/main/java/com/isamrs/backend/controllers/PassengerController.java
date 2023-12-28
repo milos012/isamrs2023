@@ -86,6 +86,7 @@ public class PassengerController {
         pass.setAddress(pDTO.getAddress());
         pass.setBlocked(pDTO.getBlocked());
         pass.setActivated(false);
+        pass.setDrives(pDTO.getDrives()); // Mozda ne treba jer je registracija pa ide svakako null
         
         //pass.setDrives(pDTO.getDrives());
 
