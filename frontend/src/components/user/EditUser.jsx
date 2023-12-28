@@ -43,8 +43,8 @@ export default function EditUser() {
 
     try {
         //TODO izmeni putanju - i ceo try
-        const response = axios.post("http://localhost:9000/api/login",
-          JSON.stringify({ email, password }),
+        const response = axios.put("http://localhost:9090/passenger/edit/${user.id}",
+          data,
           {
               headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
               withCredentials: true
@@ -55,7 +55,7 @@ export default function EditUser() {
         setEmail('');
         setPassword('');
       } catch (error) {
-        console.log("Greska prilikom logina")
+        console.log("Error! User update failed!")
       }
   
       navigate('/')

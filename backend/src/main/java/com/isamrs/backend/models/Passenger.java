@@ -48,16 +48,8 @@ public class Passenger{
     @Column(name = "activated",nullable = false)
     private Boolean activated;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(
-            name = "passenger_drive",
-            joinColumns = {@JoinColumn(name = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "drive_id")}
-    )
-    //private Set<Drive> drives;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_passenger_id",referencedColumnName = "id")
     private List<Drive> drives;
 
     // @Column(name = "favDrives",nullable = false)

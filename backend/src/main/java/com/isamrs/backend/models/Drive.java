@@ -42,9 +42,9 @@ public class Drive {
     // @ManyToMany(mappedBy = "drive")
     // private Set<Passenger> passengers;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_drive_id",referencedColumnName = "id")
-    private List<Route> routes;
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name="fk_drive_id",referencedColumnName = "id")
+    // private List<Route> routes;
 
     @Column(name = "status",nullable = false)
     private DriveStatus status;
@@ -54,6 +54,15 @@ public class Drive {
 
     @Column(name = "petFriendly",nullable = false)
     private Boolean petFriendly;
+
+    @Column(name = "polaziste",nullable = false)
+    private String polaziste;
+
+    @Column(name = "odrediste",nullable = false)
+    private String odrediste;
+
+    @Column(name = "datum",nullable = false)
+    private String datum;
 
     
 }

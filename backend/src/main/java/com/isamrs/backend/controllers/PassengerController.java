@@ -86,6 +86,7 @@ public class PassengerController {
         pass.setAddress(pDTO.getAddress());
         pass.setBlocked(pDTO.getBlocked());
         pass.setActivated(false);
+        pass.setDrives(pDTO.getDrives()); // Mozda ne treba jer je registracija pa ide svakako null
         
         //pass.setDrives(pDTO.getDrives());
 
@@ -141,4 +142,24 @@ public class PassengerController {
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT, consumes="application/json")
+	public ResponseEntity<PassengerDTO> updatePassenger(@RequestBody PassengerDTO pDTO) throws Exception {
+
+        Optional<Passenger> old = passengerService.getPassengerById(pDTO.getId());
+
+        if (old.get() != null) {
+            old.get().setFname(pDTO.getFname());
+            old.get().setLname(pDTO.getLname());
+            old.get().setPassword(pDTO.getPassword());
+            old.get().setPhoneNumber(pDTO.getPhoneNumber());
+            //pass.setImgUrl(pDTO.getImgUrl());
+            old.get().setAddress(pDTO.getAddress());
+            passengerService.savePassenger(old.get());
+            return new ResponseEntity<>(new PassengerDTO(old.get()), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
 }
