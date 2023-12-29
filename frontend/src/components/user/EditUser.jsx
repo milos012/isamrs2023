@@ -38,22 +38,24 @@ export default function EditUser() {
         password: data.get('password'),
         phoneNumber: data.get('phoneNumber'),
         imgUrl: data.get('imgUrl'),
-        address: data.get('address')
+        address: data.get('address'),
+        email: data.get('email'),
     });
 
     try {
         //TODO izmeni putanju - i ceo try
-        const response = axios.put("http://localhost:9090/passenger/edit/${user.id}",
+        
+        const response = axios.put("http://localhost:9090/api/passenger/edit",
           data,
           {
               headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
               withCredentials: true
           });
-        const accessToken = (await response)?.data?.accessToken;
-        const roles = (await response)?.data?.roles;
-        setAuth({ email, password, roles, accessToken });
-        setEmail('');
-        setPassword('');
+        // const accessToken = (await response)?.data?.accessToken;
+        // const roles = (await response)?.data?.roles;
+        // setAuth({ email, password, roles, accessToken });
+        // setEmail('');
+        // setPassword('');
       } catch (error) {
         console.log("Error! User update failed!")
       }
@@ -136,6 +138,14 @@ export default function EditUser() {
                 name="address"
                 label="Address"
                 id="address"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="email"
+                label="Email"
+                id="email"
               />
               <Button
                 type="submit"

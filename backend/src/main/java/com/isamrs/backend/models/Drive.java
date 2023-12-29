@@ -38,10 +38,6 @@ public class Drive {
     // @JoinColumn(name = "driver_id")
     // private Driver driver;
 
-    //TODO
-    // @ManyToMany(mappedBy = "drive")
-    // private Set<Passenger> passengers;
-
     // @OneToMany(cascade = CascadeType.ALL)
     // @JoinColumn(name="fk_drive_id",referencedColumnName = "id")
     // private List<Route> routes;

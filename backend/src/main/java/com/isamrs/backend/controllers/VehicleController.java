@@ -64,8 +64,6 @@ public class VehicleController {
         vh.setBabyFriendly(vhDTO.getBabyFriendly());
         vh.setPetFriendly(vhDTO.getPetFriendly());
 
-        //TODO dopuni sa join elementima
-
         vehicleService.saveVehicle(vh);
 
 		return new ResponseEntity<>(new VehicleDTO(vh), HttpStatus.CREATED);

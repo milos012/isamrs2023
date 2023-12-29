@@ -63,9 +63,6 @@ public class DriveController {
         drive.setKraj(driveDTO.getKraj());
         drive.setUkupnaCena(driveDTO.getUkupnaCena());
 
-        //passengers i mozda drivers
-
-        // drive.setRoutes(driveDTO.getRoutes());
         drive.setStatus(driveDTO.getStatus());
         drive.setBabyFriendly(driveDTO.getBabyFriendly());
         drive.setPetFriendly(driveDTO.getPetFriendly());
