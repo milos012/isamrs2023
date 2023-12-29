@@ -32,8 +32,7 @@ export default function ActivateUser() {
     });
 
     try {
-        const response = axios.put('http://localhost:9090/api/passenger/activate/milos.stik@gmail.com',
-          {email},
+        const response = axios.put('http://localhost:9090/api/passenger/activate',
           {
               headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
               withCredentials: true

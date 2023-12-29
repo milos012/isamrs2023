@@ -33,46 +33,46 @@ export default function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
+    // Directly use the updated userData state
     const data = new FormData(event.currentTarget);
-
-
-    let fName = data.get('firstName');
-    let lName = data.get('lastName');
-    let address = data.get('address');
-    let phoneNumber = data.get('phoneNumber');
-    let email = data.get('email');
-    // Checking password
-    //TODO: Display error if it doenst match, axios call if it matches
     let password = data.get('password');
     let passwordConf = data.get('passwordConf');
-
-    data.append('blocked', false);
-
-
-    if (password.length != 0){
-      if (password == passwordConf){
-        console.log("password matches")
-        
-        try {
-          // data will be an error? send all the let-s created above instead
-          const response = await axios.post("http://localhost:9090/api/passenger/register",data,
-            {
-                headers: { 'Content-Type': 'application/json' ,'Access-Control-Allow-Origin': '*'},
-                withCredentials: true
-            });
-        } catch (error) {
-          console.log(error)
-        }
-    
-        navigate('/')
   
-      }
-      else{
-        console.log("password doesn't match")
-        alert("Password doesn't match!")
+  
+    if (password.length !== 0) {
+      console.log(password);
+      if (password === passwordConf) {
+        console.log("password matches");
+  
+        try {
+          console.log(password); 
+          const registerData = {fname:data.get("firstName"),lname:data.get("lastName"),email:data.get("email"),password:data.get("password"),phoneNumber:data.get("phoneNumber"),address:data.get("address"),blocked:false,imgUrl:""}
+          console.log("podaci");
+          console.log(registerData);
+          const response = await axios.post(
+            "http://localhost:9090/api/passenger/register",
+            registerData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              },
+              withCredentials: true
+            }
+          );
+          console.log(response);
+  
+          // After the successful post, navigate
+          navigate('/');
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("password doesn't match");
+        alert("Password doesn't match!");
       }
     }
-
   };
 
   return (

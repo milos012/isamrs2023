@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,15 +87,13 @@ public class PassengerController {
         pass.setAddress(pDTO.getAddress());
         pass.setBlocked(pDTO.getBlocked());
         pass.setActivated(false);
-        pass.setDrives(pDTO.getDrives()); // Mozda ne treba jer je registracija pa ide svakako null
+        pass.setDrives(pDTO.getDrives());
         
-        //pass.setDrives(pDTO.getDrives());
-
         passengerService.savePassenger(pass);
 
         //Sending mail
         String subject = "ISAMRS Account activation";
-        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activate";
+        String body = "Your account has been sucessfully created but it will remain unactive. To activate it please follow the link below: " + "http://127.0.0.1:5173/activate/" + pDTO.getEmail();
 
         mailService.sendSimpleEmail(pass.getEmail(), subject, body);
 
@@ -103,11 +102,11 @@ public class PassengerController {
 	}
 
 
-    @RequestMapping(value="/activate/{email}", method=RequestMethod.PUT)
-	public ResponseEntity<PassengerDTO> activate(@PathVariable String email){
+    @RequestMapping(value="/activate", method=RequestMethod.PUT)
+	public ResponseEntity<PassengerDTO> activate(){
 		
-		Passenger rt = passengerService.getPassengerByEmail(email);
-
+		//Passenger rt = passengerService.getPassengerByEmail(email);
+        Passenger rt = passengerService.getPassengerByEmail("milos.stik@gmail.com");
 		
 		if (rt != null) {
 
@@ -143,20 +142,21 @@ public class PassengerController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+    @CrossOrigin("*")
     @RequestMapping(value = "/edit", method = RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<PassengerDTO> updatePassenger(@RequestBody PassengerDTO pDTO) throws Exception {
 
-        Optional<Passenger> old = passengerService.getPassengerById(pDTO.getId());
+        Passenger old =passengerService.getPassengerByEmail(pDTO.getEmail());
 
-        if (old.get() != null) {
-            old.get().setFname(pDTO.getFname());
-            old.get().setLname(pDTO.getLname());
-            old.get().setPassword(pDTO.getPassword());
-            old.get().setPhoneNumber(pDTO.getPhoneNumber());
+        if (old != null) {
+            old.setFname(pDTO.getFname());
+            old.setLname(pDTO.getLname());
+            old.setPassword(pDTO.getPassword());
+            old.setPhoneNumber(pDTO.getPhoneNumber());
             //pass.setImgUrl(pDTO.getImgUrl());
-            old.get().setAddress(pDTO.getAddress());
-            passengerService.savePassenger(old.get());
-            return new ResponseEntity<>(new PassengerDTO(old.get()), HttpStatus.OK);
+            old.setAddress(pDTO.getAddress());
+            passengerService.savePassenger(old);
+            return new ResponseEntity<>(new PassengerDTO(old), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

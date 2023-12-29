@@ -14,15 +14,15 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/api/location/all")
                 .allowedOrigins("http://127.0.0.1:5173");
         registry.addMapping("/api/passenger/register")
-                .allowedOrigins("http://127.0.0.1:5173");
-        registry.addMapping("/api/passenger/activate/{email}")
-                .allowedOrigins("http://127.0.0.1:5173");
+                .allowedOrigins("http://127.0.0.1:5173").allowedMethods("POST").allowCredentials(true).maxAge(3600);
+        registry.addMapping("/api/passenger/activate")
+                .allowedOrigins("http://127.0.0.1:5173").allowedMethods("PUT").allowCredentials(true).maxAge(3600);
         registry.addMapping("/api/passenger/resetPassword/{email}")
                 .allowedOrigins("http://127.0.0.1:5173");
         registry.addMapping("/api/passenger/{id}")
                 .allowedOrigins("http://127.0.0.1:5173");
         registry.addMapping("/api/passenger/edit")
-                .allowedOrigins("http://127.0.0.1:5173");
+                .allowedOrigins("http://127.0.0.1:5173").allowedMethods("OPTIONS","PUT").allowCredentials(true).maxAge(3600);
         registry.addMapping("/api/drive/all")
                 .allowedOrigins("http://127.0.0.1:5173");
     }
